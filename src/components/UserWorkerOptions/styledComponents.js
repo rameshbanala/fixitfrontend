@@ -9,17 +9,26 @@ export const WorkerCardsContainer = styled.div`
   width: 90%;
   list-style-type: none;
   padding-left: 0px;
-  @media (max-width: 767px) {
+
+  @media (max-width: 768px) {
+    flex-direction: column;
     width: 100%;
+    padding: 0 10px;
   }
 `;
 
 export const OptionCardLink = styled(Link)`
   text-decoration: none;
-  width: 30%;
+  width: 28%;
   margin: 10px;
-  @media (max-width: 767px) {
-    width: 43%;
+
+  @media (max-width: 1024px) {
+    width: 40%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 5px 0;
   }
 `;
 
@@ -28,6 +37,9 @@ export const WorkerCard = styled.div`
   box-shadow: 0px 4px 16px 0px #bfbfbf;
   border-radius: 10px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const WorkerImage = styled.img`
@@ -35,10 +47,6 @@ export const WorkerImage = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-
-  @media (max-width: 767px) {
-    height: 150px;
-  }
 `;
 
 export const WorkerCardDesc = styled.div`
@@ -46,30 +54,53 @@ export const WorkerCardDesc = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
+  width: 100%;
 
-  @media (max-width: 767px) {
-    padding: 5px;
+  @media (max-width: 768px) {
+    padding: 10px;
   }
 `;
 
 export const WorkerTitle = styled.h1`
-  color: ${props => props.$isTitle ? "#e08814" : "#0d0438"};
-  font-family: ${props => props.$isTitle ? "Bree Serif" : "Roboto"};
+  color: ${(props) => (props.$isTitle ? "#e08814" : "#0d0438")};
+  font-family: ${(props) => (props.$isTitle ? "Bree Serif" : "Roboto")};
   font-size: 18px;
   margin-left: 8px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
     font-size: 14px;
   }
 `;
 
 export const NextPageBtn = styled.button`
-  border: 0px;
+  border: 0;
   background-color: transparent;
   font-size: 16px;
   align-self: flex-end;
   color: grey;
+  margin-top: 10px;
+  cursor: pointer;
+
   &:hover {
     color: blue;
   }
-`
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+export const StarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+
+  svg {
+    margin-right: 2px;
+    font-size: 16px;
+  }
+`;

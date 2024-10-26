@@ -9,6 +9,7 @@ class WorkerProfile extends Component{
         return (
             <>
                 <WorkerNavbar />
+                <div style={{height:"100vh"}}></div>
                 <Footer />
             </>
         )
