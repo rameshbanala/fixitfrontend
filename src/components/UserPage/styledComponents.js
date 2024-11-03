@@ -1,10 +1,23 @@
-import styled from "styled-components"
-import { NavDropdown as BootstrapNavDropdown } from 'react-bootstrap';
+import styled from "styled-components";
+import { NavDropdown as BootstrapNavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const LoaderContainer = styled.div`
   height: 70vh;
   width: 100%;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+`;
+
+export const GreetingsTitle = styled.h1`
+  font-size: 32px;
+  color: ${(props) => (props.$isTitle ? "#050a42" : "#e37814")};
+  font-family: Bree Serif;
+  margin-left: 12px;
 `;
 
 export const UserProfileCard = styled.div`
@@ -14,7 +27,7 @@ export const UserProfileCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.$backgroundColor};
+  background-color: ${(props) => props.$backgroundColor};
 `;
 export const DropdownLink = styled(Link)`
   text-decoration: none;
@@ -33,14 +46,13 @@ export const CustomNavDropdown = styled(BootstrapNavDropdown)`
     display: none;
   }
   @media (max-width: 767px) {
-    
   }
 `;
 
 export const NotFoundContainer = styled.div`
   height: 100vh;
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -54,4 +66,4 @@ export const NotFoundImage = styled.img`
 export const NotFoundTitle = styled.h1`
   font-size: 32px;
   color: #cc6d0e;
-`
+`;

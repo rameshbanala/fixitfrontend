@@ -202,6 +202,8 @@ export const ExpandableContent = styled.div`
     props.$isActive
       ? "0s"
       : "0.2s"}; /* Delay on closing to improve user experience */
+`;
+export const MainDetailsContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -232,3 +234,45 @@ export const TitleAndData = styled.h1`
     width: 50%;
   }
 `;
+
+export const ButtonConatiner = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+export const BillCard = styled.div`
+  box-shadow: 0px 4px 16px 0px #bfbfbf;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+`;
+export const BillCardTitle = styled.h3`
+  font-family: Roboto;
+  font-size: 24px;
+  color: #d96b04;
+  font-weight: bold;
+`;
+export const BillDataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10px;
+`;
+export const BillAmountContainer = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  border-bottom: 2px dashed #0f11a3;
+`;
+export const BillData = styled.div`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+export const BillAmount = styled(TitleAndData)`
+  color: ${props => props.$isDiscount ? "#e30b0f":"#39ed3f"};
+`

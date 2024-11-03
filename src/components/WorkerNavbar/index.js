@@ -27,7 +27,7 @@ const WorkerNavbar = ({ apiStatus }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto align-items-lg-center">
                         <DropdownLink to="/">Home</DropdownLink>
-                        <DropdownLink to="/worker/bookings">Booking</DropdownLink>
+                        <DropdownLink to="/worker/dashboard">Dashboard</DropdownLink>
                         <CustomNavDropdown title={<ProfileCard name={userName} />} id="basic-nav-dropdown" align="end">
                             <DropdownLink to="/worker/profile">My Profile</DropdownLink>
                             <NavDropdown.Divider />

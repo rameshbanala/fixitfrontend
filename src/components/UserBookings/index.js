@@ -125,12 +125,57 @@ class UserBookings extends Component {
           workerCity: eachBooking.worker_city,
           workerAddress: eachBooking.worker_address,
           workerPincode: eachBooking.worker_pincode,
+
+          totalBill: eachBooking.total_bill,
+          billStatus: eachBooking.bill_status,
         }));
         //console.log(userBookings);
         this.setState({ userBookings, apiStatus: apiStatusConstants.success });
       }
     } else {
       this.setState({ apiStatus: apiStatusConstants.failure });
+    }
+  };
+
+  onCancelBooking = async (bookingId) => {
+    const url = "http://localhost:8000/cancel-booking";
+    const jwtToken = Cookies.get("jwt_token");
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ booking_id: bookingId }),
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    if (response.ok) {
+      alert(data.message);
+      this.getUserBookings();
+    } else {
+      alert(data.message);
+    }
+  };
+
+  onPayBill = async (bookingId) => {
+    const url = "http://localhost:8000/complete-booking";
+    const jwtToken = Cookies.get("jwt_token");
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ booking_id: bookingId }),
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    if (response.ok) {
+      alert(data.message);
+      this.getUserBookings();
+    } else {
+      alert(data.message);
     }
   };
 
@@ -164,7 +209,7 @@ class UserBookings extends Component {
       currentPage,
       itemsPerPage,
     } = this.state;
-    
+    console.log(userBookings);
     const filteredData =
       activeOption === buttonItems[0].type
         ? userBookings
@@ -214,6 +259,8 @@ class UserBookings extends Component {
                     activeBookingId={activeBookingId}
                     cardData={eachItem}
                     onChangeActiveBookingId={this.onChangeActiveBookingId}
+                    onCancelBooking={this.onCancelBooking}
+                    onPayBill={this.onPayBill}
                   />
                 ))}
               </BookingCardsContainer>

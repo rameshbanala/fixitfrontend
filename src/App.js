@@ -13,7 +13,7 @@ import UserProfile from "./components/UserProfile";
 import UserHelp from "./components/UserHelp";
 import UserFeedBack from "./components/UserFeedBack";
 import WorkerPage from "./components/WorkerPage";
-import WorkerBookings from "./components/WorkerBookings";
+import WorkerDashboard from "./components/WorkerDashboard";
 import WorkerPrfile from "./components/WorkerProfile";
 import WorkerHelp from "./components/WorkerHelp";
 import WorkerFeedback from "./components/WorkerFeedback";
@@ -21,6 +21,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
 
 import "./App.css";
+import WorkerWorkDetails from "./components/WorkerWorkDetails.js";
 
 class App extends Component {
   state = {
@@ -52,14 +53,42 @@ class App extends Component {
               <Signup onChangeSuccessMessage={this.onChangeSuccessMessage} />
             }
           />
-          <Route path="/user" element={<ProtectedRoute element={UserPage} reqUser="USER" />} />
-          <Route path="/user/services" element={<ProtectedRoute element={UserServices} reqUser="USER" />} />
-          <Route path="/user/services/:type" element={<ProtectedRoute element={UserWorkerOptions} reqUser="USER" />} />
-          <Route path="/user/services/:type/:id" element={<ProtectedRoute element={UserWorkerProfile} reqUser="USER" />} />
-          <Route path="/user/bookings" element={<ProtectedRoute element={UserBookings} reqUser="USER" />} />
-          <Route path="/user/profile" element={<ProtectedRoute element={UserProfile} reqUser="USER" />} />
-          <Route path="/user/help" element={<ProtectedRoute element={UserHelp} reqUser="USER" />} />
-          <Route path="/user/feedback" element={<ProtectedRoute element={UserFeedBack} reqUser="USER" />} />
+          <Route
+            path="/user"
+            element={<ProtectedRoute element={UserPage} reqUser="USER" />}
+          />
+          <Route
+            path="/user/services"
+            element={<ProtectedRoute element={UserServices} reqUser="USER" />}
+          />
+          <Route
+            path="/user/services/:type"
+            element={
+              <ProtectedRoute element={UserWorkerOptions} reqUser="USER" />
+            }
+          />
+          <Route
+            path="/user/services/:type/:id"
+            element={
+              <ProtectedRoute element={UserWorkerProfile} reqUser="USER" />
+            }
+          />
+          <Route
+            path="/user/bookings"
+            element={<ProtectedRoute element={UserBookings} reqUser="USER" />}
+          />
+          <Route
+            path="/user/profile"
+            element={<ProtectedRoute element={UserProfile} reqUser="USER" />}
+          />
+          <Route
+            path="/user/help"
+            element={<ProtectedRoute element={UserHelp} reqUser="USER" />}
+          />
+          <Route
+            path="/user/feedback"
+            element={<ProtectedRoute element={UserFeedBack} reqUser="USER" />}
+          />
           <Route
             path="/admin"
             element={<ProtectedRoute element={AdminPage} reqUser="ADMIN" />}
@@ -69,8 +98,16 @@ class App extends Component {
             element={<ProtectedRoute element={WorkerPage} reqUser="WORKER" />}
           />
           <Route
-            path="/worker/bookings"
-            element={<ProtectedRoute element={WorkerBookings} reqUser="WORKER" />}
+            path="/worker/dashboard"
+            element={
+              <ProtectedRoute element={WorkerDashboard} reqUser="WORKER" />
+            }
+          />
+          <Route
+            path="/worker/dashboard/:bookingId"
+            element={
+              <ProtectedRoute element={WorkerWorkDetails} reqUser="WORKER" />
+            }
           />
           <Route
             path="/worker/profile"
@@ -78,7 +115,9 @@ class App extends Component {
           />
           <Route
             path="/worker/feedback"
-            element={<ProtectedRoute element={WorkerFeedback} reqUser="WORKER" />}
+            element={
+              <ProtectedRoute element={WorkerFeedback} reqUser="WORKER" />
+            }
           />
           <Route
             path="/worker/help"

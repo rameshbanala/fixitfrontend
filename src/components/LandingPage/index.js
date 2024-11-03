@@ -2,6 +2,11 @@ import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import LandingPageNavbar from "../LandingPageNavbar";
 import Footer from "../Footer";
+import Carousel from "./Carousel";
+import Feedback from "./Feedback";
+import UserView from "./UserView";
+import WorkerView from "./WorkerView";
+import "./index.css";
 import {
   TitleSectionContainer,
   WelcomeMsg,
@@ -27,21 +32,20 @@ const titleSection = () => (
   <TitleSectionContainer>{welcomeMessage()}</TitleSectionContainer>
 );
 
-
 const LandingPage = () => {
   const jwt_token = Cookies.get("jwt_token");
   const user_type = Cookies.get("user_type");
 
-  if(jwt_token!==undefined){
-    switch(user_type){
+  if (jwt_token !== undefined) {
+    switch (user_type) {
       case "USER":
-        return <Navigate to="/user" />
+        return <Navigate to="/user" />;
       case "WORKER":
-        return <Navigate to="/worker" />
+        return <Navigate to="/worker" />;
       case "ADMIN":
-        return <Navigate to="/admin" />
+        return <Navigate to="/admin" />;
       default:
-        return null
+        return null;
     }
   }
 
@@ -49,6 +53,35 @@ const LandingPage = () => {
     <>
       <LandingPageNavbar />
       {titleSection()}
+      <div className="main-container">
+        <section className="carousel-section">
+          <Carousel />
+        </section>
+
+        {/* Workers View Section */}
+        <section className="workers-view-section">
+          <WorkerView /> {/* Worker View Component */}
+        </section>
+
+        {/* Users View Section */}
+        <section className="users-view-section">
+          <UserView /> {/* User View Component */}
+        </section>
+
+        {/* Feedback Section */}
+        <section className="feedback-section">
+          <Feedback />
+        </section>
+
+        {/* Impact Section */}
+        <section className="impact-section">
+          <h2>Our Impact</h2>
+          <p>
+            FixIt has revolutionized home repair services by helping thousands
+            of homeowners maintain and improve their homes with confidence.
+          </p>
+        </section>
+      </div>
       <Footer />
     </>
   );

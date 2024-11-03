@@ -3,12 +3,15 @@ import Cookies from "js-cookie";
 import { Button } from "react-bootstrap";
 import UserNavBar from "../UserNavBar";
 import LoaderComponent from "../LoaderComponent";
+import UserHome from "./UserHome";
 import Footer from "../Footer";
 import {
+  GreetingsTitle,
   LoaderContainer,
   NotFoundContainer,
   NotFoundImage,
   NotFoundTitle,
+  TitleContainer,
 } from "./styledComponents";
 
 const apiStatusConstants = {
@@ -87,7 +90,7 @@ class UserPage extends Component {
     </NotFoundContainer>
   );
 
-  renderSuccess = () => <h1>Success</h1>;
+  renderSuccess = () => <UserHome />;
 
   renderUserPage = () => {
     const { apiStatus } = this.state;
@@ -108,6 +111,10 @@ class UserPage extends Component {
     return (
       <>
         <UserNavBar apiStatus={apiStatus} />
+        <TitleContainer>
+          <GreetingsTitle $isTitle>Welcome, </GreetingsTitle>
+          <GreetingsTitle>{Cookies.get("name").toUpperCase()}</GreetingsTitle>
+        </TitleContainer>
         {this.renderUserPage()}
         <Footer />
       </>

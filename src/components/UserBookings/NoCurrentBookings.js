@@ -49,8 +49,8 @@ const NoCurrentBookings = () => {
   return (
     <CardContainer>
       <Title>No Current Bookings</Title>
-      <Message>You don't have any bookings at the moment.</Message>
-      <Message>Change the filters or Explore our Services....</Message>
+      <Message>You don't this type of bookings at this moment.</Message>
+      <Message><b>Change the filters or Explore our Services....</b></Message>
       <div>
         <ActionButton onClick={onBookNow}>Explore Services</ActionButton>
       </div>

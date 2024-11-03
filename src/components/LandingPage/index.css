@@ -1,0 +1,118 @@
+/* Main container */
+.main-container {
+  background-color: white;
+  color: #160236; /* Dark purple */
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Welcome Section */
+.welcome-section {
+  text-align: center;
+  padding: 50px;
+  background-color: #ed7f1f; /* Orange */
+  color: white;
+}
+
+.welcome-section h1 {
+  font-size: 3em;
+}
+
+/* Carousel Section */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  min-width: 300px;
+  margin-right: 20px;
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Motto Section */
+.motto-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f4f4f4; /* Light gray for a professional look */
+}
+
+.motto-section p {
+  font-size: 1.5em;
+}
+
+/* Views Section */
+.views-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 20px;
+}
+
+.views-section div {
+  width: 40%;
+  padding: 20px;
+  background-color: #ed7f1f;
+  color: white;
+  border-radius: 10px;
+}
+
+.views-section h2 {
+  text-align: center;
+}
+
+/* Feedback Section */
+.feedback-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.feedback-section h2 {
+  margin-bottom: 20px;
+}
+
+.feedback-section p {
+  font-size: 1.2em;
+}
+
+/* Impact Section */
+.impact-section {
+  background-color: #160236; /* Dark purple */
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.impact-section h2 {
+  margin-bottom: 20px;
+}
+
+.impact-section p {
+  font-size: 1.2em;
+}
+
+/* FAQ Section */
+.faq {
+  padding: 50px 20px;
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-item h3 {
+  font-size: 1.3em;
+}
+
+.faq-item p {
+  font-size: 1.1em;
+}

@@ -27,7 +27,7 @@ export const OptionsContainer = styled.ul`
 export const OptionEl = styled.li`
   margin: 10px;
   @media (max-width: 767px) {
-    margin: 7px;
+    margin: 6px;
   }
 `;
 export const TableHeader = styled.th`
