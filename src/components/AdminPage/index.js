@@ -119,7 +119,7 @@ class AdminPage extends Component {
           </thead>
           <tbody>
             {feedback.map(eachFeedback => (
-              <tr key={eachFeedback.id}>
+              <tr key={eachFeedback.id+count}>
                 <td>{count++}</td>
                 <td>{eachFeedback.user_type}</td>
                 <td>{eachFeedback.rating}</td>
