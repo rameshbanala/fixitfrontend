@@ -113,7 +113,9 @@ class UserPage extends Component {
         <UserNavBar apiStatus={apiStatus} />
         <TitleContainer>
           <GreetingsTitle $isTitle>Welcome, </GreetingsTitle>
-          <GreetingsTitle>{Cookies.get("name").toUpperCase()}</GreetingsTitle>
+          <GreetingsTitle>
+            {Cookies.get("name") ? Cookies.get("name").toUpperCase() : ""}
+          </GreetingsTitle>
         </TitleContainer>
         {this.renderUserPage()}
         <Footer />
