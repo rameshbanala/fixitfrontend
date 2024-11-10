@@ -1,13 +1,13 @@
 import WorkerNavbar from "../WorkerNavbar";
 import Footer from "../Footer";
-
+import FAQ from "./FAQ";
 
 const WorkerHelp = () => (
-    <>
-        <WorkerNavbar />
-        <h1 style={{ height: "80vh" }}>Worker Help page</h1>
-        <Footer />
-    </>
-)
+  <>
+    <WorkerNavbar />
+    <FAQ />
+    <Footer />
+  </>
+);
 
-export default WorkerHelp
+export default WorkerHelp;

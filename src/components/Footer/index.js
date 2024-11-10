@@ -12,8 +12,6 @@ const FooterContainer = styled.footer`
   padding: 40px 0;
   color: #fff;
   text-align: center;
-  position: relative;
-  bottom: 0;
   width: 100%;
 `;
 
@@ -25,13 +23,18 @@ const FooterLogo = styled.div`
 `;
 
 const FooterLinks = styled.div`
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 
   a {
     color: #edf2f4;
     margin: 0 15px;
     font-size: 1rem;
     text-decoration: none;
+    transition: color 0.3s ease;
+
     &:hover {
       color: #ef233c;
     }
@@ -69,7 +72,7 @@ function Footer() {
       <FooterLinks>
         <a href="/">Home</a>
         <a href="/services">Services</a>
-        <a href="/about">About Us</a>
+        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </FooterLinks>
 

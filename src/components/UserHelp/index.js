@@ -1,12 +1,13 @@
-import UserNavBar from "../UserNavBar"
-import Footer from "../Footer"
+import UserNavBar from "../UserNavBar";
+import Footer from "../Footer";
+import FAQComponent from "./FAQComponent";
 
 const UserHelp = () => (
-    <>
-        <UserNavBar />
-        <h1 style={{ height: "80vh" }}>User Help Page</h1>
-        <Footer />
-    </>
-)
+  <>
+    <UserNavBar />
+    <FAQComponent />
+    <Footer />
+  </>
+);
 
-export default UserHelp
+export default UserHelp;
