@@ -303,6 +303,7 @@ class WorkerSignup extends Component {
             accept="application/pdf"
             id="resume"
             onChange={this.handleFileChange}
+            style={{paddingBottom: "15px",height: "45px"}}
           />
         </InputContainer>
         <SubmitContainer>

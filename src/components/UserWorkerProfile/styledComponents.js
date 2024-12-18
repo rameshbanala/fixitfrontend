@@ -6,6 +6,7 @@ export const WorkerProfileContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 `;
 
 export const MainContainer = styled.div`
