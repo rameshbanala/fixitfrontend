@@ -8,6 +8,7 @@ import {
   FaRupeeSign,
   FaClipboardCheck,
 } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
 import WorkerNavbar from "../WorkerNavbar";
 import Footer from "../Footer";
 import withRouter from "../UserWorkerOptions/withRouter";
@@ -89,6 +90,9 @@ class WorkerWorkDetails extends Component {
         userName: eachBooking.user_name,
         userEmail: eachBooking.user_email,
         userPhoneNo: eachBooking.user_phone_no,
+        userAddress: eachBooking.user_address,
+        userCity: eachBooking.user_city,
+        userPincode: eachBooking.user_pincode,
         workerName: eachBooking.worker_name,
         workerEmail: eachBooking.worker_email,
         workerPhoneNo: eachBooking.worker_phone_no,
@@ -406,6 +410,22 @@ class WorkerWorkDetails extends Component {
                 </IconWrapper>
                 <DetailText>
                   <DetailLabel>Phone:</DetailLabel> {workData.userPhoneNo}
+                </DetailText>
+              </Detail>
+              <Detail>
+                <IconWrapper>
+                  <IoLocationSharp />
+                </IconWrapper>
+                <DetailText>
+                  <DetailLabel>Address:</DetailLabel> {workData.userCity}
+                </DetailText>
+              </Detail>
+              <Detail>
+                <IconWrapper>
+                  <IoLocationSharp />
+                </IconWrapper>
+                <DetailText>
+                  <DetailLabel>Pincode:</DetailLabel> {workData.userPincode}
                 </DetailText>
               </Detail>
             </RowContainer>
