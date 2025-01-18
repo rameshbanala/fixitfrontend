@@ -165,7 +165,7 @@ class UserWorkerOptions extends Component {
     return (
       <>
         <UserNavBar />
-        <Container>
+        <Container className="p-3">
           <Heading>Choose a worker</Heading>
 
           {this.renderOptionsPage()}

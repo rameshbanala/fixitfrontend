@@ -1,25 +1,41 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const FeedbackContainer = styled.div`
   padding: 40px 20px;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const FeedbackTitle = styled.h2`
-  text-align: left;
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
 `;
 
 const FeedbackSubtitle = styled.h3`
-  text-align: left;
+  text-align: center;
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 30px;
 `;
 
 const FeedbackItem = styled.div`
-  border: 1px solid #ed7f1f;
-  border-radius: 8px;
-  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
   margin: 20px 0;
-  background-color: white;
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const FeedbackHeader = styled.div`
@@ -34,82 +50,101 @@ const Stars = styled.div`
 `;
 
 const StarIndicator = styled.span`
-  color: #0000FF;
-  margin-right: 5px;
+  color: #ffcc00;
+  font-size: 18px;
+  margin-right: 3px;
 `;
 
 const RatingTitle = styled.h4`
-  margin: 0;
+  font-size: 16px;
+  color: #666;
+  margin: 0 10px;
+  flex: 1;
+  text-align: left;
 `;
 
 const FeedbackDate = styled.p`
-  color: #160236;
-  margin-left: auto;
+  color: #aaa;
+  font-size: 14px;
 `;
 
 const FeedbackComment = styled.p`
-  margin: 10px 0;
+  margin: 15px 0;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.6;
 `;
 
-const FeedbackUser = styled.p`
-  font-weight: bold;
+const FeedbackUser = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 `;
 
 const FeedbackImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-top: 10px;
+  margin-right: 10px;
+`;
+
+const UserName = styled.p`
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
 `;
 
 const feedbackData = [
   {
-    rating: ' for Service Quality',
-    date: 'September 1, 2024',
-    comment: 'FixIt made it so easy to find a plumber for my leaky faucet. The service was quick and professional.',
-    user: 'Mrunal Thakur',
-    image: 'c1.jpg',
+    rating: "Service Quality",
+    date: "September 1, 2024",
+    comment:
+      "The plumber was quick and professional. I would definitely use FixIt again!",
+    user: "Alice Johnson",
+    image: "https://randomuser.me/api/portraits/women/45.jpg",
+    stars: 5,
+  },
+  {
+    rating: "Professionalism",
+    date: "August 20, 2024",
+    comment:
+      "The electrician I hired was on time and fixed the issue perfectly.",
+    user: "Mark Thompson",
+    image: "https://randomuser.me/api/portraits/men/34.jpg",
     stars: 4,
   },
   {
-    rating: 'for Professionalism',
-    date: 'August 20, 2024',
-    comment: 'The electrician I booked through FixIt was punctual and fixed my issue in no time. Highly recommend!',
-    user: 'Salman Khan',
-    image: 'c2.jpg',
+    rating: "Ease of Use",
+    date: "July 15, 2024",
+    comment:
+      "The platform is user-friendly and makes finding help hassle-free.",
+    user: "Sophia Adams",
+    image: "https://randomuser.me/api/portraits/women/28.jpg",
     stars: 4,
   },
   {
-    rating: 'for Ease of Use',
-    date: 'July 15, 2024',
-    comment: 'Great platform! Booking a repair service was a breeze, and the communication feature is very handy.',
-    user: 'Rashmika Mandhana',
-    image: 'c3.jpg',
+    rating: "Availability",
+    date: "October 24, 2024",
+    comment: "I was impressed with how many workers were available in my area.",
+    user: "David Williams",
+    image: "https://randomuser.me/api/portraits/men/40.jpg",
     stars: 4,
   },
   {
-    rating: ' for availability of workers',
-    date: 'October 24, 2024',
-    comment: 'FixIt made it so easy to find a worker. The service was quick and professional.',
-    user: 'Vijay',
-    image: 'c4.jpg',
-    stars: 4,
+    rating: "Customer Support",
+    date: "February 28, 2024",
+    comment: "The support team resolved my query quickly. Great experience!",
+    user: "Emma Brown",
+    image: "https://randomuser.me/api/portraits/women/19.jpg",
+    stars: 5,
   },
   {
-    rating: ' for security that FixIt provides',
-    date: 'February 28, 2024',
-    comment: 'FixIt is providing user security. No bothering about individual data .',
-    user: 'Kamal Hasan',
-    image: 'c5.jpg',
-    stars: 4,
-  },
-  {
-    rating: ' for help desk',
-    date: 'January 25, 2024',
-    comment: 'FixIt made my query clear. It is great to get service from fixit.',
-    user: 'Prabhas',
-    image: 'c6.jpg',
-    stars: 4,
+    rating: "Security",
+    date: "January 25, 2024",
+    comment: "I feel confident using FixIt, knowing my data is secure.",
+    user: "John Davis",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
+    stars: 5,
   },
 ];
 
@@ -117,7 +152,7 @@ const Feedback = () => {
   return (
     <FeedbackContainer>
       <FeedbackTitle>What Our Users Say</FeedbackTitle>
-      <FeedbackSubtitle>6 Reviews</FeedbackSubtitle>
+      <FeedbackSubtitle>{feedbackData.length} Reviews</FeedbackSubtitle>
       {feedbackData.map((feedback, index) => (
         <FeedbackItem key={index}>
           <FeedbackHeader>
@@ -130,8 +165,10 @@ const Feedback = () => {
             <FeedbackDate>{feedback.date}</FeedbackDate>
           </FeedbackHeader>
           <FeedbackComment>{feedback.comment}</FeedbackComment>
-          <FeedbackUser>- {feedback.user}</FeedbackUser>
-          <FeedbackImage src={feedback.image} alt={feedback.user} />
+          <FeedbackUser>
+            <FeedbackImage src={feedback.image} alt={feedback.user} />
+            <UserName>{feedback.user}</UserName>
+          </FeedbackUser>
         </FeedbackItem>
       ))}
     </FeedbackContainer>

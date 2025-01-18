@@ -3,6 +3,7 @@ import React from "react";
 import { Chrono } from "react-chrono";
 import styled from "styled-components";
 import AutoSlidingCarousel from "./Carousel";
+import ServiceCard from "./ServiceCard";
 
 // Styled components for layout and improved styling
 const Container = styled.div`
@@ -172,6 +173,7 @@ const UserHome = () => {
           />
         </ChronoContainer>
       </StepsSection>
+      <ServiceCard />
 
       {/* FAQ Section */}
       <FAQSection>

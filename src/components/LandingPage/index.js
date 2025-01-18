@@ -2,7 +2,6 @@ import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import LandingPageNavbar from "../LandingPageNavbar";
 import Footer from "../Footer";
-import Carousel from "./Carousel";
 import Feedback from "./Feedback";
 import UserView from "./UserView";
 import WorkerView from "./WorkerView";
@@ -13,7 +12,9 @@ import {
   WelcomeMsgSpan,
   CaptionForWelcome,
   TitleDesc,
+  ImpactSection,
 } from "./styledComponents";
+import LandingPageCarousel from "./Carousel";
 
 const welcomeMessage = () => (
   <>
@@ -55,7 +56,7 @@ const LandingPage = () => {
       {titleSection()}
       <div className="main-container">
         <section className="carousel-section">
-          <Carousel />
+          <LandingPageCarousel />
         </section>
 
         {/* Workers View Section */}
@@ -74,13 +75,13 @@ const LandingPage = () => {
         </section>
 
         {/* Impact Section */}
-        <section className="impact-section">
+        <ImpactSection>
           <h2>Our Impact</h2>
           <p>
             FixIt has revolutionized home repair services by helping thousands
             of homeowners maintain and improve their homes with confidence.
           </p>
-        </section>
+        </ImpactSection>
       </div>
       <Footer />
     </>

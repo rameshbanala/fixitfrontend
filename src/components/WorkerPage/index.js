@@ -4,10 +4,12 @@ import { Button } from "react-bootstrap";
 import LoaderComponent from "../LoaderComponent";
 import Footer from "../Footer";
 import {
+  GreetingsTitle,
   LoaderContainer,
   NotFoundContainer,
   NotFoundImage,
   NotFoundTitle,
+  TitleContainer,
 } from "../UserPage/styledComponents";
 import WorkerNavbar from "../WorkerNavbar";
 import WorkerHome from "./WorkerHome";
@@ -105,6 +107,12 @@ class WorkerPage extends Component {
     return (
       <>
         <WorkerNavbar apiStatus={apiStatus} />
+        <TitleContainer>
+          <GreetingsTitle $isTitle>Welcome, </GreetingsTitle>
+          <GreetingsTitle>
+            {Cookies.get("name") ? Cookies.get("name").toUpperCase() : ""}
+          </GreetingsTitle>
+        </TitleContainer>
         {this.renderWorkerPage()}
         <Footer />
       </>
