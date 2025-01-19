@@ -40,7 +40,7 @@ class UserPage extends Component {
       return null;
     }
     this.setState({ apiStatus: apiStatusConstants.loading });
-    const url = "http://localhost:8000/get-user-data";
+    const url = `${process.env.REACT_APP_API_URL}/get-user-data`;
     const options = {
       method: "GET",
       headers: {

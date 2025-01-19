@@ -2,12 +2,13 @@ import Table from "react-bootstrap/Table";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import { PdfLinkText, TableHeader } from "./styledComponents";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const DetailsTable = (props) => {
   const { activeOption, visibleData, onVerified } = props;
   const jwtToken = Cookies.get("jwt_token");
   const onClickVerify = async (id) => {
-    const url = "http://localhost:8000/verify-the-worker";
+    const url = `${apiUrl}/verify-the-worker`;
     const options = {
       method: "POST",
       headers: {
@@ -31,7 +32,7 @@ const DetailsTable = (props) => {
     }
   };
   const onClickReject = async (id) => {
-    const url = "http://localhost:8000/reject-the-worker";
+    const url = `${apiUrl}/reject-the-worker`;
     const options = {
       method: "POST",
       headers: {
@@ -90,7 +91,7 @@ const DetailsTable = (props) => {
   };
 
   const getPdfLink = (eachItem) => {
-    const baseUrl = "http://localhost:8000";
+    const baseUrl = apiUrl;
     const fullPdfUrl = `${baseUrl}/${eachItem.file_path}`;
     return (
       <PdfLinkText href={fullPdfUrl} target="_blank" rel="noopener noreferrer">

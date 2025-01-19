@@ -45,13 +45,16 @@ class UserSignup extends Component {
   storeTheDetails = async (formData) => {
     const { onChangeSignUpSuccess } = this.props;
     try {
-      const response = await fetch("http://localhost:8000/user-signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/user-signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         onChangeSignUpSuccess(true);

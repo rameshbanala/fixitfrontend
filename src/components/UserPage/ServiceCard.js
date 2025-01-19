@@ -53,7 +53,7 @@ const ActionButton = styled.button`
 const IconWrapper = styled.div`
   font-size: 28px;
   margin-bottom: 15px;
-  color:rgb(247, 127, 47);
+  color: rgb(247, 127, 47);
 `;
 const ServiceCard = () => {
   const navigte = useNavigate();

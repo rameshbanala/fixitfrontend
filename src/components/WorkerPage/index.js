@@ -40,7 +40,7 @@ class WorkerPage extends Component {
       return null;
     }
     this.setState({ apiStatus: apiStatusConstants.loading });
-    const url = "http://localhost:8000/get-worker-data";
+    const url = `${process.env.REACT_APP_API_URL}/get-worker-data`;
     const options = {
       method: "GET",
       headers: {

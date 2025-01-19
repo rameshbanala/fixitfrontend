@@ -52,7 +52,7 @@ const ProfilePageWorker = () => {
 
   const getUserData = useCallback(async () => {
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/get-user-data";
+    const url = `${process.env.REACT_APP_API_URL}/get-user-data`;
     const options = {
       method: "GET",
       headers: {
@@ -165,7 +165,7 @@ const ProfilePageWorker = () => {
     console.log(changedFields);
 
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/update-profile";
+    const url = `${process.env.REACT_APP_API_URL}/update-profile`;
     const options = {
       method: "PUT",
       headers: {

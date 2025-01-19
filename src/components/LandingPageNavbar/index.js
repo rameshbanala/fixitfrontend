@@ -15,7 +15,16 @@ const LogoImg = styled.img`
   height: 50px;
   width: 50px;
 `;
-
+const LinkText = styled.p`
+  margin: 0 10px;
+  font-size: 18px;
+  color: rgb(32, 30, 29);
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    color: #e87715;
+  }
+`;
 function LandingPageNavbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -28,17 +37,17 @@ function LandingPageNavbar() {
           {/* Use RouteChangeLink directly without wrapping Nav.Link */}
           <Nav.Item className="d-none d-lg-block">
             <RouteChangeLink to="/">
-              <b>Home</b>
+              <LinkText>Home</LinkText>
             </RouteChangeLink>
           </Nav.Item>
           <Nav.Item className="d-none d-lg-block">
             <RouteChangeLink to="/login">
-              <b>Login</b>
+              <LinkText>Login</LinkText>
             </RouteChangeLink>
           </Nav.Item>
           <Nav.Item className="d-none d-lg-block">
             <RouteChangeLink to="/signup">
-              <b>Signup</b>
+              <LinkText>Signup</LinkText>
             </RouteChangeLink>
           </Nav.Item>
           {/* Icons for small devices */}

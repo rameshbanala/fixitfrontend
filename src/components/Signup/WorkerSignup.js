@@ -80,7 +80,7 @@ class WorkerSignup extends Component {
 
   storeTheDetails = async (formData) => {
     const { onChangeSignUpSuccess } = this.props;
-    fetch("http://localhost:8000/worker-application", {
+    fetch(`${process.env.REACT_APP_API_URL}/worker-application`, {
       method: "POST",
       body: formData,
     })

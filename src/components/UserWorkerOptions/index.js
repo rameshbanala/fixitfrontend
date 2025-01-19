@@ -51,7 +51,7 @@ class UserWorkerOptions extends Component {
     this.setState({ apiStatus: apiStatusConstants.loading });
     const jwtToken = Cookies.get("jwt_token");
     const reqType = this.props.params.type;
-    const url = `http://localhost:8000/user-worker-options/?req_type=${reqType}`;
+    const url = `${process.env.REACT_APP_API_URL}/user-worker-options/?req_type=${reqType}`;
     const options = {
       method: "GET",
       headers: {

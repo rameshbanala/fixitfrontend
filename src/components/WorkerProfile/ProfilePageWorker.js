@@ -65,7 +65,7 @@ const ProfilePageWorker = () => {
 
   const getUserData = useCallback(async () => {
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/get-worker-data";
+    const url = `${process.env.REACT_APP_API_URL}/get-worker-data`;
     const options = {
       method: "GET",
       headers: {

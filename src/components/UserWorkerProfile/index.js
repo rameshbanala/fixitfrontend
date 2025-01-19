@@ -100,7 +100,7 @@ class UserWorkerProfile extends Component {
     this.setState({ apiStatus: apiStatusConstants.loading });
     const jwtToken = Cookies.get("jwt_token");
     const workerId = this.props.params.id;
-    const url = `http://localhost:8000/worker-profile-details/${workerId}`;
+    const url = `${process.env.REACT_APP_API_URL}/worker-profile-details/${workerId}`;
     const options = {
       method: "GET",
       headers: {
@@ -132,7 +132,7 @@ class UserWorkerProfile extends Component {
       worker_id: id,
       work_type: type,
     };
-    const url = "http://localhost:8000/booking-worker";
+    const url = `${process.env.REACT_APP_API_URL}/booking-worker`;
     const options = {
       method: "POST",
       headers: {

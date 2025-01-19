@@ -61,7 +61,7 @@ class AdminPage extends Component {
   getData = async () => {
     this.setState({ isLoading: true });
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/admin-page-details";
+    const url = `${process.env.REACT_APP_API_URL}/admin-page-details`;//"http://localhost:8000/admin-page-details"
     const options = {
       method: "GET",
       headers: {

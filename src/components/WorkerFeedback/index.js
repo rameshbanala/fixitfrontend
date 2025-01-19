@@ -28,7 +28,7 @@ const WorkerFeedbackForm = () => {
             comments: feedback.comments
         }
         const jwtToken = Cookies.get("jwt_token");
-        const url = "http://localhost:8000/feedback";
+        const url = `${process.env.REACT_APP_API_URL}/feedback`;
         const options = {
             method: "POST",
             headers: {

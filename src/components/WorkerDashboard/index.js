@@ -73,7 +73,7 @@ class WorkerDashboard extends Component {
   getBookingsData = async () => {
     this.setState({ apiStatus: apiStatusConstants.loading });
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/booking-details";
+    const url = `${process.env.REACT_APP_API_URL}/booking-details`;
     const options = {
       method: "GET",
       headers: {

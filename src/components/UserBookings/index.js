@@ -33,6 +33,7 @@ const apiStatusConstants = {
   loading: "LOADING",
   noBookings: "NO BOOKINGS",
 };
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const buttonItems = [
   {
@@ -92,7 +93,7 @@ class UserBookings extends Component {
   getUserBookings = async () => {
     this.setState({ apiStatus: apiStatusConstants.loading });
     const jwtToken = Cookies.get("jwt_token");
-    const url = "http://localhost:8000/booking-details";
+    const url = `${apiUrl}/booking-details`;
     const options = {
       method: "GET",
       headers: {
@@ -138,7 +139,7 @@ class UserBookings extends Component {
   };
 
   onCancelBooking = async (bookingId) => {
-    const url = "http://localhost:8000/cancel-booking";
+    const url = `${apiUrl}/cancel-booking`;
     const jwtToken = Cookies.get("jwt_token");
     const options = {
       method: "PUT",
@@ -159,7 +160,7 @@ class UserBookings extends Component {
   };
 
   onPayBill = async (bookingId) => {
-    const url = "http://localhost:8000/complete-booking";
+    const url = `${apiUrl}/complete-booking`;
     const jwtToken = Cookies.get("jwt_token");
     const options = {
       method: "PUT",

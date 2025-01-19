@@ -67,7 +67,7 @@ class WorkerWorkDetails extends Component {
     this.setState({ apiStatus: apiStatusConstants.loading });
     const jwtToken = Cookies.get("jwt_token");
     const { bookingId } = this.props.params;
-    const url = `http://localhost:8000/booking-details/?booking_id=${bookingId}`;
+    const url = `${process.env.REACT_APP_API_URL}/booking-details/?booking_id=${bookingId}`;
     const options = {
       method: "GET",
       headers: {
@@ -107,7 +107,7 @@ class WorkerWorkDetails extends Component {
 
   submitBill = async (finalPrice) => {
     const jwtToken = Cookies.get("jwt_token");
-    const url = `http://localhost:8000/generate-bill`;
+    const url = `${process.env.REACT_APP_API_URL}/generate-bill`;
     const options = {
       method: "POST",
       headers: {
@@ -172,7 +172,7 @@ class WorkerWorkDetails extends Component {
   confirmCancelBooking = async () => {
     const jwtToken = Cookies.get("jwt_token");
     const { bookingId } = this.props.params;
-    const url = `http://localhost:8000/cancel-booking`;
+    const url = `${process.env.REACT_APP_API_URL}/cancel-booking`;
     const options = {
       method: "PUT",
       headers: {
