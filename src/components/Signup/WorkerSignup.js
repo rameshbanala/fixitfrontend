@@ -385,14 +385,6 @@ class WorkerSignup extends Component {
         {otpVerified && (
           <SubmitContainer>
             <SubmitBtnEl type="submit">Signup</SubmitBtnEl>
-            <ChangeText>
-              Have an account?{" "}
-              <RouteChangeLink to="/login">Login</RouteChangeLink>
-            </ChangeText>
-            <ChangeText>
-              Need to change the type?{" "}
-              <ChangeBtn onClick={changeType}>Change</ChangeBtn>
-            </ChangeText>
           </SubmitContainer>
         )}
 
@@ -403,6 +395,16 @@ class WorkerSignup extends Component {
             </SubmitBtnEl>
           </SubmitContainer>
         )}
+        <SubmitContainer>
+          <ChangeText>
+            Have an account?{" "}
+            <RouteChangeLink to="/login">Login</RouteChangeLink>
+          </ChangeText>
+          <ChangeText>
+            Need to change the type?{" "}
+            <ChangeBtn onClick={changeType}>Change</ChangeBtn>
+          </ChangeText>
+        </SubmitContainer>
       </>
     );
   };

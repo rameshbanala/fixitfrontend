@@ -12,7 +12,7 @@ import {
   ChangeText,
   RouteChangeLink,
   ChangeBtn,
-  OtpContainer
+  OtpContainer,
 } from "./styledComponents";
 
 class UserSignup extends Component {
@@ -317,28 +317,26 @@ class UserSignup extends Component {
         {otpVerified && (
           <SubmitContainer>
             <SubmitBtnEl type="submit">Signup</SubmitBtnEl>
-            <ChangeText>
-              Have an account?{" "}
-              <RouteChangeLink to="/login">Login</RouteChangeLink>
-            </ChangeText>
-            <ChangeText>
-              Need to change the type?{" "}
-              <ChangeBtn onClick={changeType}>Change</ChangeBtn>
-            </ChangeText>
           </SubmitContainer>
         )}
 
         {!otpSent && !otpVerified && (
           <SubmitContainer>
-            <SubmitBtnEl
-              type="button"
-              onClick={this.sendOTP}
-              disabled={!email}
-            >
+            <SubmitBtnEl type="button" onClick={this.sendOTP} disabled={!email}>
               Send OTP
             </SubmitBtnEl>
           </SubmitContainer>
         )}
+        <SubmitContainer>
+          <ChangeText>
+            Have an account?{" "}
+            <RouteChangeLink to="/login">Login</RouteChangeLink>
+          </ChangeText>
+          <ChangeText>
+            Need to change the type?{" "}
+            <ChangeBtn onClick={changeType}>Change</ChangeBtn>
+          </ChangeText>
+        </SubmitContainer>
       </>
     );
   };
