@@ -1,9 +1,8 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import SuccessMessage from "./SuccessMessage";
-
 import {
   LoginTitle,
   LoginPageContainer,
@@ -38,14 +37,28 @@ class LoginPage extends Component {
     password: "",
     showPassword: false,
     loginType: userTypes[0].type,
+    isForgotPassword: false, // State to toggle Forgot Password view
+    resetEmail: "",
+    otp: "",
+    otpSent: false,
+    confirmPassword: "",
   };
 
+  // Handlers for login form
   onChangeEmail = (event) => {
     this.setState({ email: event.target.value });
   };
 
   onChangePassword = (event) => {
     this.setState({ password: event.target.value });
+  };
+
+  onChangeConfirmPassword = (event) => {
+    this.setState({ confirmPassword: event.target.value });
+  };
+
+  onChangeOtp = (event) => {
+    this.setState({ otp: event.target.value });
   };
 
   onChangeShowPassword = () => {
@@ -66,6 +79,77 @@ class LoginPage extends Component {
       this.props.navigate("/user");
     } else if (user_type === "WORKER") {
       this.props.navigate("/worker");
+    }
+  };
+
+  // Forgot Password Handlers
+  onForgotPasswordToggle = () => {
+    this.setState((prevState) => ({
+      isForgotPassword: !prevState.isForgotPassword,
+    }));
+  };
+
+  onChangeResetEmail = (event) => {
+    this.setState({ resetEmail: event.target.value });
+  };
+
+  onForgotPassword = async (event) => {
+    event.preventDefault();
+    const { resetEmail, loginType } = this.state;
+    const url = `${process.env.REACT_APP_API_URL}/forgot-password`;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: resetEmail, user_type: loginType }),
+    };
+
+    const response = await fetch(url, options);
+    const resData = await response.json();
+    if (response.status === 200) {
+      alert("Otp has been sent to your email!");
+      this.setState({ otpSent: true });
+    } else {
+      alert(resData.message);
+    }
+  };
+
+  onResetPassword = async (event) => {
+    event.preventDefault();
+    const { resetEmail, password, loginType, otp, confirmPassword } =
+      this.state;
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    const url = `${process.env.REACT_APP_API_URL}/reset-password`;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: resetEmail,
+        newPassword: password,
+        user_type: loginType,
+        otp,
+      }),
+    };
+    const response = await fetch(url, options);
+    const resData = await response.json();
+    if (response.status === 200) {
+      alert("Password has been reset successfully!");
+      this.setState({
+        otpSent: false,
+        isForgotPassword: false,
+        resetEmail: "",
+        password: "",
+        otp: "",
+        loginType: userTypes[0].type,
+      });
+    } else {
+      alert(resData.message);
     }
   };
 
@@ -96,6 +180,7 @@ class LoginPage extends Component {
     }
   };
 
+  // Login form rendering
   loginForm = () => {
     const { email, password, showPassword, loginType } = this.state;
     return (
@@ -147,6 +232,19 @@ class LoginPage extends Component {
           </SubmitBtn>
         </InputContainer>
         <DontHaveAccountText>
+          <button
+            onClick={this.onForgotPasswordToggle}
+            style={{
+              border: "none",
+              background: "none",
+              color: "#007bff",
+              cursor: "pointer",
+            }}
+          >
+            Forgot Password?
+          </button>
+        </DontHaveAccountText>
+        <DontHaveAccountText>
           Don't have an account?{" "}
           <DonthaveLink to="/signup">Signup</DonthaveLink>
         </DontHaveAccountText>
@@ -154,8 +252,121 @@ class LoginPage extends Component {
     );
   };
 
+  // Forgot Password form rendering
+  forgotPasswordForm = () => {
+    const {
+      resetEmail,
+      loginType,
+      otpSent,
+      showPassword,
+      password,
+      otp,
+      confirmPassword,
+    } = this.state;
+    return (
+      <>
+        <InputContainer>
+          <InputLabel htmlFor="resetEmail">Enter your email address</InputLabel>
+          <InputElement
+            type="email"
+            placeholder="Enter your email"
+            id="resetEmail"
+            value={resetEmail}
+            onChange={this.onChangeResetEmail}
+            required
+          />
+        </InputContainer>
+        <InputContainer>
+          <InputLabel>Login as</InputLabel>
+          <InputElement
+            as="select"
+            onChange={this.onChangeLoginType}
+            value={loginType}
+          >
+            {userTypes.map((eachType) => (
+              <option key={eachType.type} value={eachType.type}>
+                {eachType.displayText}
+              </option>
+            ))}
+          </InputElement>
+        </InputContainer>
+        {otpSent && (
+          <>
+            <InputContainer>
+              <InputLabel htmlFor="otp">Enter OTP</InputLabel>
+              <InputElement
+                type="text"
+                placeholder="Enter OTP"
+                id="otp"
+                value={otp}
+                onChange={this.onChangeOtp}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <PasswordElementContainer>
+                <PasswordInputEl
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  id="password"
+                  value={password}
+                  onChange={this.onChangePassword}
+                  required
+                />
+                <IconWrapper onClick={this.onChangeShowPassword}>
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </IconWrapper>
+              </PasswordElementContainer>
+            </InputContainer>
+            <InputContainer>
+              <InputLabel htmlFor="password">Confirm Password</InputLabel>
+              <PasswordElementContainer>
+                <PasswordInputEl
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password again"
+                  id="confirmpassword"
+                  value={confirmPassword}
+                  onChange={this.onChangeConfirmPassword}
+                  required
+                />
+              </PasswordElementContainer>
+            </InputContainer>
+          </>
+        )}
+        {!otpSent ? (
+          <InputContainer>
+            <SubmitBtn variant="primary" onClick={this.onForgotPassword}>
+              Send OTP
+            </SubmitBtn>
+          </InputContainer>
+        ) : (
+          <InputContainer>
+            <SubmitBtn variant="primary" onClick={this.onResetPassword}>
+              Reset Password
+            </SubmitBtn>
+          </InputContainer>
+        )}
+        <DontHaveAccountText>
+          Remember your password?{" "}
+          <button
+            onClick={this.onForgotPasswordToggle}
+            style={{
+              border: "none",
+              background: "none",
+              color: "#007bff",
+              cursor: "pointer",
+            }}
+          >
+            Back to Login
+          </button>
+        </DontHaveAccountText>
+      </>
+    );
+  };
+
   render() {
-    const { showSuccessMessage } = this.props;
+    const { showSuccessMessage, isForgotPassword } = this.state;
     return (
       <LoginPageContainer>
         {showSuccessMessage && <SuccessMessage />}
@@ -164,9 +375,11 @@ class LoginPage extends Component {
             <Link to="/">
               <LogoImg src="fixit_avatar.jpg" />
             </Link>
-            <LoginTitle>Login</LoginTitle>
+            <LoginTitle>
+              {isForgotPassword ? "Forgot Password" : "Login"}
+            </LoginTitle>
           </LoginTitleSection>
-          {this.loginForm()}
+          {isForgotPassword ? this.forgotPasswordForm() : this.loginForm()}
         </LoginContainer>
       </LoginPageContainer>
     );
