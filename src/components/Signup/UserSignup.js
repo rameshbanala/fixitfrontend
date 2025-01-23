@@ -12,6 +12,7 @@ import {
   ChangeText,
   RouteChangeLink,
   ChangeBtn,
+  OtpContainer
 } from "./styledComponents";
 
 class UserSignup extends Component {
@@ -27,6 +28,9 @@ class UserSignup extends Component {
     city: "",
     pincode: "",
     isPasswordNotMatched: false,
+    otp: "",
+    otpSent: false,
+    otpVerified: false,
   };
 
   onChangeOfValue = (eventType, value) => {
@@ -40,6 +44,56 @@ class UserSignup extends Component {
       isPasswordNotMatched: confirmPassword !== password,
       cnfPassword: confirmPassword,
     });
+  };
+  sendOTP = async () => {
+    const { email } = this.state;
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/send-otp`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (response.ok) {
+        this.setState({ otpSent: true });
+        alert("OTP sent to your email!");
+      } else {
+        alert("Error sending OTP.");
+      }
+    } catch (error) {
+      alert("Error during OTP sending:", error);
+    }
+  };
+
+  // Function to verify OTP
+  verifyOTP = async () => {
+    const { email, otp } = this.state;
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/verify-otp`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, otp }),
+        }
+      );
+
+      if (response.ok) {
+        this.setState({ otpVerified: true });
+        alert("OTP verified successfully.");
+      } else {
+        alert("Invalid OTP.");
+      }
+    } catch (error) {
+      alert("Error during OTP verification:", error);
+    }
   };
 
   storeTheDetails = async (formData) => {
@@ -108,6 +162,9 @@ class UserSignup extends Component {
       city,
       pincode,
       isPasswordNotMatched,
+      otp,
+      otpSent,
+      otpVerified,
     } = this.state;
     return (
       <>
@@ -239,17 +296,49 @@ class UserSignup extends Component {
             required
           />
         </InputContainer>
-        <SubmitContainer>
-          <SubmitBtnEl type="submit">Signup</SubmitBtnEl>
-          <ChangeText>
-            Have an account?{" "}
-            <RouteChangeLink to="/login">Login</RouteChangeLink>
-          </ChangeText>
-          <ChangeText>
-            Need to change the type?{" "}
-            <ChangeBtn onClick={changeType}>Change</ChangeBtn>
-          </ChangeText>
-        </SubmitContainer>
+        {otpSent && !otpVerified && (
+          <OtpContainer>
+            <InputLabelEl htmlFor="otp">Enter OTP:</InputLabelEl>
+            <InputEl
+              type="text"
+              id="otp"
+              value={otp}
+              onChange={(event) =>
+                this.onChangeOfValue("otp", event.target.value)
+              }
+              required
+            />
+            <SubmitBtnEl type="button" onClick={this.verifyOTP}>
+              Verify OTP
+            </SubmitBtnEl>
+          </OtpContainer>
+        )}
+
+        {otpVerified && (
+          <SubmitContainer>
+            <SubmitBtnEl type="submit">Signup</SubmitBtnEl>
+            <ChangeText>
+              Have an account?{" "}
+              <RouteChangeLink to="/login">Login</RouteChangeLink>
+            </ChangeText>
+            <ChangeText>
+              Need to change the type?{" "}
+              <ChangeBtn onClick={changeType}>Change</ChangeBtn>
+            </ChangeText>
+          </SubmitContainer>
+        )}
+
+        {!otpSent && !otpVerified && (
+          <SubmitContainer>
+            <SubmitBtnEl
+              type="button"
+              onClick={this.sendOTP}
+              disabled={!email}
+            >
+              Send OTP
+            </SubmitBtnEl>
+          </SubmitContainer>
+        )}
       </>
     );
   };

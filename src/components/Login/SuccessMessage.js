@@ -66,7 +66,7 @@ const SuccessMessage = () => {
       <SuccessCard>
         <Message>
           <Icon />
-          Submitted Details Successfully
+          Stored Data Successfully!
         </Message>
       </SuccessCard>
       <LoadingBarContainer>
